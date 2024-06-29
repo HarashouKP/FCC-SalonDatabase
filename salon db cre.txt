@@ -1,0 +1,33 @@
+CREATE DATABASE salon
+
+CREATE TABLE customers(
+customer_id SERIAL PRIMARY KEY ,
+name VARCHAR UNIQUE ,
+phone VARCHAR UNIQUE 
+
+)
+
+
+CREATE TABLE services(
+service_id SERIAL PRIMARY KEY,
+name VARCHAR NOT NULL
+
+)
+
+
+
+CREATE TABLE appointments(
+appointment_id SERIAL PRIMARY KEY,
+time VARCHAR , 
+customer_id INT ,
+CONSTRAINT fk_customer_id
+      FOREIGN KEY(customer_id)
+      REFERENCES customers(customer_id) ,
+service_id INT ,
+CONSTRAINT fk_service_id
+      FOREIGN KEY(service_id)
+      REFERENCES services(service_id)
+
+)
+
+INSERT INTO services(name) VALUES('haircut'),('spa'),('wash') 
